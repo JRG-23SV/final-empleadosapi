@@ -1,11 +1,11 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mongo-db:
-    image: mongo:6.0
+    image: mongo:7.0
     container_name: empleados_mongo
     ports:
-      - "27018:27017"
+      - "27017:27017"
     volumes:
       - mongo_data:/data/db
 
@@ -13,14 +13,14 @@ services:
     build: .
     container_name: empleados_api
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
-      - MONGO_URI=mongodb://mongo-db:27018/empleadosDB
+      - MONGO_URI=mongodb://mongo-db:27017/empleadosDB
     volumes:
       - .:/app
     depends_on:
       - mongo-db
-    command: npm start
+    command: npm run dev
 
 volumes:
   mongo_data:
