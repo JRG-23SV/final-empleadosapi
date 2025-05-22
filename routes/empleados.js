@@ -6,7 +6,7 @@ const empleadoSchema = require('../validaciones/empleadoSchema');
 
 
 
-// El metodo POST para obtener los datos de los empleados
+// El metodo POST para crear un nuevo empleado
 rutasEmpleados.post('/', async (req, res) => {
   try {
     const { error, value } = empleadoSchema.validate(req.body);
@@ -76,7 +76,7 @@ rutasEmpleados.put('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Empleado no encontrado' });
     }
 
-    res.json(empleadoActualizado);
+    res.json({message: `Empleado actualizado correctamente`});
   } catch (err) {
     res.status(500).json({ error: 'Error al actualizar el empleado' });
   }
